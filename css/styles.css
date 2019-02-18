@@ -1,0 +1,121 @@
+body {
+	background: #fefefe;
+	padding-bottom: 100px;
+}
+
+.row {
+  margin: 0;
+}
+
+.hero-wrap {
+	background: white;
+	margin-top: 100px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	padding: 0;
+}
+
+.tabs-wrap {
+  text-align: center;
+  padding: 25px;
+}
+
+.tabs-wrap--unselected {
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tabs-wrap--left {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hero-tab:hover {
+  text-decoration: none;
+}
+
+.hero-tab h3, p {
+  color: #666666;
+}
+
+.hero-tab h3 {
+  font-size: 1.25em;
+  margin-bottom: 5px;
+}
+
+.hero-tab p {
+  font-size: 1em;
+  color: #b3b3b1;
+}
+
+
+.hero-button-text-wrap {
+	padding: 25px; 
+}
+
+.hero-embedded-wrap {
+	margin: 0;
+	text-align: center;
+	background: #fafafa;
+	padding: 25px;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hero-embedded-wrap p {
+	margin-bottom: 5px;
+}
+
+.hero-clipboard-wrap {
+	position: relative;
+	margin-top: 15px;
+}
+
+.hero-clipboard-wrap textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  min-height: 0;
+  font-size: 13px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  padding-right: 80px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.gumroad-button-copy {
+	padding-top: 12px;
+  height: 50px;
+  width: 50px;
+  top: 8px;
+  right: 10px;
+  position: absolute;	
+  background: #36a9ae linear-gradient(to bottom, #37adb2, #329ca0);
+  border: 1px solid #2a8387;
+  border-radius: 3px;
+}
+
+.icn-overlay {
+  display: inline-block;
+  height: 72px;
+  width: 57px;
+  background: url('https://assets.gumroad.com/assets/widgets/icon-overlay-70812f2e16818bec3ded5287565a88a6905b5a442212361c5747c1a7e2c43205.svg');
+}
+
+.icn-embed {
+  display: inline-block;
+  height: 72px;
+  width: 57px;
+  background: url(https://assets.gumroad.com/assets/widgets/icon-embed-4716af914797e376a9cfa5c6f20c3b319b67f35cd3dc5de808887e6546d99dd3.svg);
+}
+
+.icn-copy {
+	position: relative;
+	left: -1px;
+  background: url(https://assets.gumroad.com/assets/widgets/icon-copy-f0ef022f20a13b23a269174452d53a094d6cebc8f95babd6cddb5d8d91a964ac.svg) top center no-repeat;
+  width: 20px;
+  height: 21px;
+  display: inline-block;
+  padding: 0 8px;	
+}
+

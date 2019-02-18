@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="hero-wrap col-md-8 offset-2">
+    <div class="row">
+      <div class="col-md-6 tabs-wrap tabs-wrap--left">
+        <a class="hero-tab"
+          href="#"
+          data-widget-type="modal">
+          <i class="icn-overlay"></i>
+          <h3>Overlay</h3>
+          <p>Inline purchases without leaving your site</p>
+        </a>
+      </div>
+      <div class="col-md-6 tabs-wrap tabs-wrap--unselected">
+        <a class="hero-tab"
+          href="#"
+          data-widget-type="embed">
+          <i class="icn-embed"></i>
+          <h3>Embed</h3>
+          <p>Embedded products on your site</p>
+        </a>        
+      </div>      
+    </div>
+
+    <div class="col-xs-12 hero-button-text-wrap"
+      id="hero-button-text">
+      <form id="hero-button-form">
+        <div class="form-group">
+          <label for="buttonText">Button Text</label>
+          <input type="email" 
+            class="form-control" 
+            id="buttonText"  
+            placeholder="Buy My Product">
+        </div>
+      </form>
+
+      <a href="#"
+        id="gumroadButtonEmbedded"
+        class="gumroad-button"
+        data-product-id="1"
+        data-widget-type="embed">
+      </a> 
+
+    </div>
+
+    <div class="col-xs-12 hero-embedded-wrap">
+      <a href="#"
+        id="buttonDemo"
+        class="gumroad-button gumroad-button-styling"
+        data-product-id="1"
+        data-widget-type="modal">
+      </a>
+
+      <h6>
+        Copy and paste this code into your website
+      </h6>
+
+      <p>
+        We highly recommend you have an SSL certificate to increase buyer confidence.
+      </p>
+
+      <div class="hero-clipboard-wrap">
+        <textarea placeholder="" 
+          readonly="" 
+          id="gumroadScript"
+          style="height: auto;">
+        </textarea>
+
+        <a id="copyToClipboard"
+          class="gumroad-button-copy"
+          data-clipboard-target="#widget-code" 
+          data-copied="Copied!" 
+          data-copy="Copy to Clipboard" 
+          data-tipsy-gravity="s" 
+          data-tipsy-trigger="hover" 
+          href="#" 
+          original-title="Copy to Clipboard">
+          <i class="icn-copy"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="//s3.amazonaws.com/assets-ehl/gumroad/gumroad-script.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
