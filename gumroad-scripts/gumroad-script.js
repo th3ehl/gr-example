@@ -3,9 +3,9 @@ var gumroadScript = (function() {
 	function activate() {
 		document.getElementsByTagName("head")[0].insertAdjacentHTML(
     "beforeend",
-    "<link rel=\"stylesheet\" href=\"//s3.amazonaws.com/assets-ehl/gumroad/gumroad-button.css\" />");
-
-		activateGumroadLinks();
+    "<link rel=\"stylesheet\" href=\"https://s3.amazonaws.com/assets-ehl/gumroad/gumroad-button.css\" />");
+		
+		activateGumroadLinks();	
 	}
 
 	function activateGumroadLinks() {
@@ -17,6 +17,7 @@ var gumroadScript = (function() {
 			if (widgetType === 'modal') {
 				setupGumroadBtn(gumroadBtns[i]);
 			} else if (widgetType === 'embed') {
+				console.log("IM HERE")
 				setupEmbeddedGumroad(gumroadBtns[i]);
 			}
 		}		
@@ -28,17 +29,25 @@ var gumroadScript = (function() {
 	    e.preventDefault();
 			var productId = gumroadBtn.dataset.productId;
 			setupIframeForGumroadLink(productId);
+			listenForIframeMsgs(productId);
 		});
 	}
 
 	function setupEmbeddedGumroad(gumroadBtn) {
 		var productId = gumroadBtn.dataset.productId;
 		var iframe = createIframe(productId);
+
+		listenForIframeMsgs(productId)
 		gumroadBtn.appendChild(iframe);
 
-    iframe.addEventListener('load', function() {
-      iframe.height = this.contentWindow.document.body.offsetHeight + 25 + 'px';
-    });		
+    // iframe.addEventListener('load', function(e) {
+    // 	console.log(e)
+    // 	console.log(iframe.contentWindow.contentWindow.document.body.scrollHeight)
+    //   // iframe.height = this.contentWindow.document.body.offsetHeight + 25 + 'px';
+    // });		
+
+
+
 	}
 
 	function setupIframeForGumroadLink(productId) {
@@ -50,7 +59,7 @@ var gumroadScript = (function() {
 
   function createIframe(productId, widgetType) {
     var iframeEl = document.createElement("iframe");
-    iframeEl.src = "//s3.amazonaws.com/assets-ehl/gumroad/gumroad-iframe.html?product-id=" + productId;
+    iframeEl.src = "https://s3.amazonaws.com/assets-ehl/gumroad/gumroad-iframe.html?product-id=" + productId;
     iframeEl.scrolling = "auto";
     iframeEl.crossorigin = 'anonymous';
     iframeEl.frameborder = "0";
@@ -59,12 +68,37 @@ var gumroadScript = (function() {
     iframeEl.style.left = 0;
     iframeEl.style.background = 'rgba(0, 0, 0, 0.5)';
     iframeEl.style.border = 'none';
+    iframeEl.style['min-height'] = '100vh';
     iframeEl.id = 'gumroad-iframe-' + productId
     return iframeEl;
   }; 
-})();
 
-function closeIframe(productId) {
-	var iframeId = 'gumroad-iframe-' + productId
-  document.getElementById(iframeId).remove();
-}
+  function listenForIframeMsgs(productId) {
+		var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+		var eventer = window[eventMethod];
+		var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+		eventer(messageEvent,function(e) {
+	    var key = e.message ? "message" : "data";
+	    var data = e[key];
+
+	    console.log(key)
+	    console.log(data)
+
+	    var iframeId, iframeEl;
+	    if (data.productId) {
+	    	iframeId = 'gumroad-iframe-' + data.productId	
+	    	iframeEl = document.getElementById(iframeId);
+	    }
+			
+	    if (data.closeGumroadModal && iframeEl) {
+				document.getElementById(iframeId).remove();
+	    }
+
+	    if (data.resize && iframeEl) {
+				iframeEl.height = data.resize + 'px';
+	    }
+		}, false);
+  }
+
+})();

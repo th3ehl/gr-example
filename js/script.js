@@ -32,13 +32,12 @@
 
     var logoHtml = '<span class="gumroad-button-logo"></span>'
     buttonDemoEl.innerHTML = logoHtml + getLinktxt();
-    console.log(self.DEFAULT_BTN_TXT)
-    setTextAreaHtml(self.DEFAULT_BTN_TXT, productId, widgetType);
+    setTextAreaHtml(buttonDemoEl.innerHTML, productId, widgetType);
 
     var buttonFormEl = document.getElementById('buttonText');
     buttonFormEl.addEventListener('input', function() {
       buttonDemoEl.innerHTML = logoHtml + getLinktxt();
-      setTextAreaHtml(buttonTxt, productId, widgetType);
+      setTextAreaHtml(buttonDemoEl.innerHTML, productId, widgetType);
     });
   }
 
@@ -50,14 +49,14 @@
 
     btnClass += '"';
 
-    var scriptHtml = '<script src="https://gumroad.com/js/gumroad.js"></script>';
+    var scriptHtml = '<script src="https://s3.amazonaws.com/assets-ehl/gumroad/gumroad-script.js"></script>';
     var buttonHtml = '<a href="#"' + ' ' +
       'class=' + btnClass + ' ' +
       'data-product-id="' + productId + '" ' + 
       'data-widget-type="' + widgetType + '" ' + 
       '>' + 
       buttonTxt + '</a>';
-    document.getElementById('gumroadScript').value = scriptHtml + "\n" + buttonHtml;
+    document.getElementById('gumroadScript').value = buttonHtml + "\n" + scriptHtml;
   }
 
   function setupClipboardListener() {

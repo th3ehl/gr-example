@@ -45,9 +45,17 @@
 		});
 
 		document.body.addEventListener("click", function(e) {
-			parent.closeIframe(productId);
+			parent.postMessage(msg = { closeGumroadModal: true, productId: productId }, '*');
+		});
+
+		document.addEventListener("DOMContentLoaded", function(event) { 
+      var height= document.getElementById('iframe__main-wrap').offsetHeight;
+      var msg = { resize: height, productId: productId }
+		  parent.postMessage(msg, '*');
 		});		
 	}
+
+
 
 	function parseParams() {
 		var paramsArr = location.href.split('?')[1].split('&');
